@@ -1,0 +1,14 @@
+[project]
+name = "test-repo"
+version = "0.1.0"
+description = "A small sample project used to verify builds and tests."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "StarfallSysAD" }]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
