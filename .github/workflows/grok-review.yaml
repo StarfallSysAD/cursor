@@ -12,8 +12,11 @@ jobs:
   review:
     name: Review
     runs-on: ubuntu-latest
+    env:
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
     steps:
       - name: Code Review
+        if: ${{ env.XAI_API_KEY != '' }}
         uses: tarmojussila/xai-code-review@v0.1.1
         with:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
