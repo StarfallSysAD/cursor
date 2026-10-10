@@ -12,8 +12,19 @@ jobs:
   review:
     name: Review
     runs-on: ubuntu-latest
+    env:
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
     steps:
       - name: Code Review
-        uses: tarmojussila/xai-code-review@v0.1.0
+        if: ${{ env.XAI_API_KEY != '' }}
+        uses: tarmojussila/xai-code-review@v0.1.1
         with:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: grok-3
+          XAI_REVIEWER_NAME: Grok
+          XAI_SYSTEM_PROMPT: >
+            You are Grok reviewing test-repo, a small Python sample.
+            The project lives in src/calculator.py (add, subtract, multiply, divide)
+            and tests/test_calculator.py. divide must raise ZeroDivisionError when
+            the divisor is 0. Review arithmetic correctness, that error, type hints,
+            and whether the tests cover the change. Skip lockfiles and formatting nits.
