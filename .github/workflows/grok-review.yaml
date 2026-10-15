@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Code Review
         if: ${{ env.XAI_API_KEY != '' }}
-        uses: tarmojussila/xai-code-review@v0.1.1
+        uses: tarmojussila/xai-code-review@d86fe10ac75980e564824bbe76648b7d6e0f44c5 # v0.1.1
         with:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
           XAI_MODEL: grok-3
